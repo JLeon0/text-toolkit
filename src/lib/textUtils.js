@@ -124,3 +124,39 @@ export const getWordCloud = (str) => {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 10)
 }
+
+export const formatJson = (str) => {
+  try {
+    return JSON.stringify(JSON.parse(str), null, 2)
+  } catch (e) {
+    return 'Error: JSON no válido'
+  }
+}
+
+export const csvToTable = (str) => {
+  try {
+    const lines = str.trim().split('\n')
+    if (lines.length === 0) return ''
+    const rows = lines.map(line => line.split(',').map(c => c.trim()))
+    const html = ['<table>']
+    html.push('<thead><tr>' + rows[0].map(c => `<th>${c}</th>`).join('') + '</tr></thead>')
+    html.push('<tbody>')
+    for (let i = 1; i < rows.length; i++) {
+      html.push('<tr>' + rows[i].map(c => `<td>${c}</td>`).join('') + '</tr>')
+    }
+    html.push('</tbody></table>')
+    return html.join('\n')
+  } catch (e) {
+    return 'Error: CSV no válido'
+  }
+}
+
+import { marked } from 'marked'
+
+export const markdownToHtml = (str) => {
+  try {
+    return marked.parse(str, { breaks: true })
+  } catch (e) {
+    return 'Error al convertir Markdown'
+  }
+}

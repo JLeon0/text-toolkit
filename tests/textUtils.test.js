@@ -21,7 +21,10 @@ import {
   toPascalCase,
   reverseText,
   getStats,
-  getWordCloud
+  getWordCloud,
+  formatJson,
+  csvToTable,
+  markdownToHtml
 } from '../src/lib/textUtils'
 
 describe('removeMultipleSpaces', () => {
@@ -172,5 +175,23 @@ describe('getWordCloud', () => {
   it('returns top words', () => {
     const r = getWordCloud('hola hola hola mundo')
     expect(r[0]).toEqual(['hola', 3])
+  })
+})
+
+describe('formatJson', () => {
+  it('formats valid JSON', () => {
+    expect(formatJson('{"a":1}')).toBe('{\n  "a": 1\n}')
+  })
+  it('returns error on invalid', () => {
+    expect(formatJson('{')).toBe('Error: JSON no válido')
+  })
+})
+
+describe('csvToTable', () => {
+  it('converts CSV to HTML table', () => {
+    const r = csvToTable('a,b\n1,2')
+    expect(r).toContain('<table>')
+    expect(r).toContain('<th>a</th>')
+    expect(r).toContain('<td>1</td>')
   })
 })

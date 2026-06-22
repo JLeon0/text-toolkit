@@ -1,16 +1,21 @@
 # Text Toolkit
 
-Kit de herramientas de texto 100% frontend. Sin backend, sin dependencias externas de servidor.
+Herramientas de texto gratuitas, 100% en el navegador. Sin backend, sin anuncios.
 
 ## Herramientas
 
-- **Limpieza** — quitar espacios múltiples, líneas vacías, tildes, números, símbolos, emojis
-- **Estadísticas** — caracteres, palabras, líneas, párrafos, tiempo de lectura, nube de palabras
-- **Conversión** — mayúsculas, minúsculas, tipo título, slug, snake_case, camelCase, PascalCase, Base64, invertir texto
+- **Limpieza** — quitar espacios, líneas vacías, tildes, números, símbolos, emojis
+- **Conversión** — mayúsculas/minúsculas, título, slug, snake_case, camelCase, PascalCase, Base64, invertir texto, Mocking Case
+- **Formato** — JSON formateado, CSV a tabla HTML, Markdown a HTML
+- **Estadísticas** — contador de caracteres/palabras/líneas/párrafos, tiempo de lectura, nube de palabras
+- **Enlaces compartibles** — copia tu texto en un enlace para compartir
+- **PWA** — funciona offline, instalable como app
+- **Tema oscuro/claro** — toggle manual con preferencia del sistema
+- **i18n** — español e inglés, detección automática del navegador
 
 ## Stack
 
-Vue 3 · Vite · Tailwind CSS
+Vue 3 · Vite · Tailwind CSS · Marked
 
 ## Desarrollo
 
@@ -18,7 +23,7 @@ Vue 3 · Vite · Tailwind CSS
 npm install
 npm run dev     # http://localhost:5173
 npm run build   # producción en dist/
-npm test        # 26 tests con vitest
+npm test        # 29 tests con vitest
 ```
 
 ## Licencia

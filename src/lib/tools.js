@@ -18,7 +18,10 @@ import {
   reverseWords,
   toBase64,
   fromBase64,
-  toMockingCase
+  toMockingCase,
+  formatJson,
+  csvToTable,
+  markdownToHtml
 } from '../lib/textUtils'
 
 export const cleaners = [
@@ -45,4 +48,7 @@ export const converters = [
   { id: 'to-base64', label: 'A Base64', fn: toBase64 },
   { id: 'from-base64', label: 'De Base64', fn: fromBase64 },
   { id: 'mocking-case', label: 'Mocking Case', fn: toMockingCase },
+  { id: 'format-json', label: 'JSON Formato', fn: formatJson },
+  { id: 'csv-table', label: 'CSV a Tabla', fn: csvToTable, isHtml: true },
+  { id: 'markdown', label: 'Markdown HTML', fn: markdownToHtml, isHtml: true },
 ]
