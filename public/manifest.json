@@ -1,0 +1,10 @@
+{
+  "name": "Text Toolkit",
+  "short_name": "TextTool",
+  "description": "Kit de herramientas de texto: limpieza, estadísticas y conversión de formato",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#4f46e5",
+  "lang": "es"
+}
