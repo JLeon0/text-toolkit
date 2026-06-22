@@ -81,16 +81,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col h-screen w-full bg-gray-950 text-gray-100 font-sans overflow-hidden relative">
+  <div class="flex flex-col h-screen w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans overflow-hidden relative">
     
-    <header class="hidden md:flex h-16 items-center px-6 border-b border-gray-800 bg-gray-900 shrink-0 z-20">
+    <header class="hidden md:flex h-16 items-center px-6 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shrink-0 z-20">
       <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-500/20">T</div>
-      <span class="ml-3 font-bold text-lg tracking-tight">TextTool</span>
+      <span class="ml-3 font-bold text-lg tracking-tight text-gray-900 dark:text-white">TextTool</span>
       <div class="ml-auto flex items-center gap-3">
-        <button @click="setLocale(locale === 'es' ? 'en' : 'es')" class="text-xs px-2 py-1 bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white rounded-md border border-gray-700 transition-colors font-medium">
+        <button @click="setLocale(locale === 'es' ? 'en' : 'es')" class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-md border border-gray-300 dark:border-gray-700 transition-colors font-medium">
           {{ locale === 'es' ? 'EN' : 'ES' }}
         </button>
-        <button @click="handleShare" :title="t('shareTitle')" class="text-xs px-2 py-1 bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white rounded-md border border-gray-700 transition-colors">🔗 {{ t('share') }}</button>
+        <button @click="handleShare" :title="t('shareTitle')" class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-md border border-gray-300 dark:border-gray-700 transition-colors">🔗 {{ t('share') }}</button>
         <button @click="toggleTheme" class="text-sm px-2 py-1 bg-gray-800 hover:bg-gray-700 rounded-md border border-gray-700 transition-colors" :title="isDark ? 'Modo claro' : 'Modo oscuro'">
           {{ isDark ? '☀️' : '🌙' }}
         </button>
@@ -101,7 +101,7 @@ onUnmounted(() => {
     <main id="main-split" class="flex-1 flex flex-col md:flex-row h-full overflow-hidden pb-16 md:pb-0">
       
       <div 
-        class="w-full md:w-1/2 overflow-hidden border-b md:border-b-0 md:border-r border-gray-800 bg-gray-950 shrink-0 md:shrink flex flex-col"
+        class="w-full md:w-1/2 overflow-hidden border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 shrink-0 md:shrink flex flex-col"
         :style="{ height: isMobile ? `calc(${inputHeight}% - 4px)` : '100%', minHeight: isMobile ? '50px' : 'auto', maxHeight: isMobile ? '90%' : '100%' }"
       >
         <div class="h-full p-2 md:p-6 flex-1 overflow-hidden">
@@ -110,14 +110,14 @@ onUnmounted(() => {
       </div>
 
       <div 
-        class="w-full h-2 bg-gray-950 hover:bg-indigo-500 cursor-row-resize flex items-center justify-center touch-none transition-colors shrink-0 z-10 md:hidden"
+        class="w-full h-2 bg-gray-50 dark:bg-gray-950 hover:bg-indigo-500 cursor-row-resize flex items-center justify-center touch-none transition-colors shrink-0 z-10 md:hidden"
         @mousedown="startDrag"
         @touchstart="startDrag"
       >
-        <div class="w-8 h-1 bg-gray-600 hover:bg-white rounded-full transition-colors"></div>
+        <div class="w-8 h-1 bg-gray-400 dark:bg-gray-600 hover:bg-gray-900 dark:hover:bg-white rounded-full transition-colors"></div>
       </div>
 
-      <div class="w-full md:w-1/2 bg-gray-950 overflow-y-auto flex-1">
+      <div class="w-full md:w-1/2 bg-gray-50 dark:bg-gray-950 overflow-y-auto flex-1">
         <div class="p-4 md:p-8 max-w-4xl mx-auto min-h-full">
           
           <div class="md:hidden">
@@ -130,10 +130,10 @@ onUnmounted(() => {
           </div>
 
           <div class="hidden md:flex flex-col gap-8 pb-10">
-            <div class="bg-gray-900 p-6 rounded-2xl border border-gray-800 shadow-xl">
+            <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-xl">
               <FormatTool @notify="showToast" @share="handleShare" />
             </div>
-            <div class="bg-gray-900 p-6 rounded-2xl border border-gray-800 shadow-xl">
+            <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-xl">
               <StatsTool />
             </div>
           </div>
@@ -141,7 +141,7 @@ onUnmounted(() => {
       </div>
     </main>
 
-    <nav class="md:hidden w-full h-16 bg-gray-900 border-t border-gray-800 flex flex-row gap-1 p-2 fixed bottom-0 left-0 z-30">
+    <nav class="md:hidden w-full h-16 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 flex flex-row gap-1 p-2 fixed bottom-0 left-0 z-30">
       <button
         v-for="tab in [{id: 'format', labelKey: 'toolsTab', icon: '✨'}, {id: 'stats', labelKey: 'statsTab', icon: '📊'}]"
         :key="tab.id"
@@ -150,7 +150,7 @@ onUnmounted(() => {
           'flex-1 flex flex-col items-center justify-center gap-1 rounded-xl transition-all text-xs font-medium',
           activeTab === tab.id 
             ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-900/20' 
-            : 'text-gray-400 hover:bg-gray-800 hover:text-gray-200'
+            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-200'
         ]"
       >
         <span class="text-lg leading-none">{{ tab.icon }}</span>

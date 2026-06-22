@@ -72,7 +72,7 @@ const handleConverterCopy = async () => {
   <div class="flex flex-col gap-5 h-full">
     <div>
       <button @click="isCleanerExpanded = !isCleanerExpanded" class="flex items-center justify-between w-full text-left mb-2 group">
-        <h2 class="text-base font-medium text-white group-hover:text-indigo-400 transition-colors">{{ t('cleanerTitle') }}</h2>
+        <h2 class="text-base font-medium text-gray-900 dark:text-white group-hover:text-indigo-400 transition-colors">{{ t('cleanerTitle') }}</h2>
         <span class="text-gray-500 group-hover:text-indigo-400 transition-transform duration-200 text-xs" :class="{'rotate-180': isCleanerExpanded}">▼</span>
       </button>
       <div v-show="isCleanerExpanded" class="flex flex-col gap-2">
@@ -85,7 +85,7 @@ const handleConverterCopy = async () => {
               'flex items-center gap-1.5 px-3 py-1.5 rounded-md border transition-all text-xs',
               selectedCleaner?.id === tool.id
                 ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-900/20'
-                : 'bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white border-gray-700 hover:border-gray-600'
+                : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600'
             ]"
           >
             <span class="opacity-75 text-sm">{{ tool.icon }}</span>
@@ -97,24 +97,24 @@ const handleConverterCopy = async () => {
           <div class="flex justify-between items-center shrink-0">
             <span class="text-xs font-bold text-indigo-400 uppercase">{{ t('preview') }}</span>
             <div class="flex gap-2">
-              <button @click="handleCleanerCopy" class="px-2 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs text-gray-300">{{ t('copy') }}</button>
+              <button @click="handleCleanerCopy" class="px-2 py-1 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded text-xs text-gray-700 dark:text-gray-300">{{ t('copy') }}</button>
               <button @click="handleCleanerApply" class="px-2 py-1 bg-indigo-600 hover:bg-indigo-500 rounded text-xs text-white">{{ t('apply') }}</button>
             </div>
           </div>
           <textarea
             :value="previewCleanerText"
             readonly
-            class="w-full p-4 bg-gray-900 text-gray-200 text-sm font-mono rounded-lg outline-none border border-gray-700 resize-none h-24"
+            class="w-full p-4 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 text-sm font-mono rounded-lg outline-none border border-gray-300 dark:border-gray-700 resize-none h-24"
           ></textarea>
         </div>
       </div>
     </div>
 
-    <hr class="border-gray-800" />
+    <hr class="border-gray-200 dark:border-gray-800" />
 
     <div class="flex flex-col flex-1">
       <button @click="isConverterExpanded = !isConverterExpanded" class="flex items-center justify-between w-full text-left mb-2 group">
-        <h2 class="text-base font-medium text-white group-hover:text-indigo-400 transition-colors">{{ t('converterTitle') }}</h2>
+        <h2 class="text-base font-medium text-gray-900 dark:text-white group-hover:text-indigo-400 transition-colors">{{ t('converterTitle') }}</h2>
         <span class="text-gray-500 group-hover:text-indigo-400 transition-transform duration-200 text-xs" :class="{'rotate-180': isConverterExpanded}">▼</span>
       </button>
       <div v-show="isConverterExpanded" class="flex flex-col flex-1">
@@ -138,8 +138,8 @@ const handleConverterCopy = async () => {
           <div class="flex justify-between items-center shrink-0">
             <span class="text-xs font-bold text-indigo-400 uppercase">{{ t('preview') }}</span>
             <div class="flex gap-2">
-              <button @click="emit('share')" class="px-2 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs text-gray-300" :title="t('shareTitle')">🔗</button>
-              <button @click="handleConverterCopy" class="px-2 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs text-gray-300">{{ t('copy') }}</button>
+              <button @click="emit('share')" class="px-2 py-1 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded text-xs text-gray-700 dark:text-gray-300" :title="t('shareTitle')">🔗</button>
+              <button @click="handleConverterCopy" class="px-2 py-1 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded text-xs text-gray-700 dark:text-gray-300">{{ t('copy') }}</button>
               <button @click="handleConverterApply" class="px-2 py-1 bg-indigo-600 hover:bg-indigo-500 rounded text-xs text-white">{{ t('apply') }}</button>
             </div>
           </div>
@@ -147,11 +147,11 @@ const handleConverterCopy = async () => {
             v-if="!isHtmlPreview"
             :value="previewConverterText"
             readonly
-            class="flex-1 w-full p-4 bg-gray-900 text-gray-200 text-sm font-mono rounded-lg outline-none border border-gray-700 resize-none"
+            class="flex-1 w-full p-4 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 text-sm font-mono rounded-lg outline-none border border-gray-300 dark:border-gray-700 resize-none"
           ></textarea>
           <div
             v-else
-            class="flex-1 w-full p-4 bg-gray-900 text-gray-200 rounded-lg border border-gray-700 overflow-auto markdown-body"
+            class="flex-1 w-full p-4 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 rounded-lg border border-gray-300 dark:border-gray-700 overflow-auto markdown-body"
             v-html="previewConverterText"
           ></div>
         </div>
