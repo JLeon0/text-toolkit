@@ -21,7 +21,13 @@ import {
   toMockingCase,
   formatJson,
   csvToTable,
-  markdownToHtml
+  markdownToHtml,
+  sortLinesAsc,
+  sortLinesDesc,
+  sortLinesRandom,
+  removeDuplicateLines,
+  urlEncode,
+  urlDecode
 } from '../lib/textUtils'
 
 export const cleaners = [
@@ -32,6 +38,10 @@ export const cleaners = [
   { id: 'remove-numbers', label: 'Quitar números', fn: removeNumbers, icon: '#' },
   { id: 'remove-symbols', label: 'Quitar símbolos', fn: removeSpecialChars, icon: '@' },
   { id: 'remove-emojis', label: 'Quitar emojis', fn: removeEmojis, icon: '☺' },
+  { id: 'sort-asc', label: 'Ordenar A-Z', fn: sortLinesAsc, icon: '↑' },
+  { id: 'sort-desc', label: 'Ordenar Z-A', fn: sortLinesDesc, icon: '↓' },
+  { id: 'sort-random', label: 'Orden aleatorio', fn: sortLinesRandom, icon: '⇅' },
+  { id: 'remove-dupes', label: 'Quitar duplicados', fn: removeDuplicateLines, icon: '∪' },
 ]
 
 export const converters = [
@@ -46,6 +56,8 @@ export const converters = [
   { id: 'to-pascal', label: 'PascalCase', fn: toPascalCase, group: 'code' },
   { id: 'reverse-text', label: 'Invertir Texto', fn: reverseText, group: 'text' },
   { id: 'reverse-words', label: 'Invertir Palabras', fn: reverseWords, group: 'text' },
+  { id: 'url-encode', label: 'URL Encode', fn: urlEncode, group: 'data' },
+  { id: 'url-decode', label: 'URL Decode', fn: urlDecode, group: 'data' },
   { id: 'to-base64', label: 'A Base64', fn: toBase64, group: 'data' },
   { id: 'from-base64', label: 'De Base64', fn: fromBase64, group: 'data' },
   { id: 'format-json', label: 'JSON Formato', fn: formatJson, group: 'data' },

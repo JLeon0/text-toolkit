@@ -160,3 +160,38 @@ export const markdownToHtml = (str) => {
     return 'Error al convertir Markdown'
   }
 }
+
+export const sortLinesAsc = (str) => {
+  return str.split('\n').sort((a, b) => a.localeCompare(b)).join('\n')
+}
+
+export const sortLinesDesc = (str) => {
+  return str.split('\n').sort((a, b) => b.localeCompare(a)).join('\n')
+}
+
+export const sortLinesRandom = (str) => {
+  const lines = str.split('\n')
+  for (let i = lines.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [lines[i], lines[j]] = [lines[j], lines[i]]
+  }
+  return lines.join('\n')
+}
+
+export const removeDuplicateLines = (str) => {
+  const seen = new Set()
+  return str.split('\n').filter(line => {
+    const trimmed = line.trim()
+    if (seen.has(trimmed)) return false
+    seen.add(trimmed)
+    return true
+  }).join('\n')
+}
+
+export const urlEncode = (str) => {
+  try { return encodeURIComponent(str) } catch (e) { return 'Error al codificar URL' }
+}
+
+export const urlDecode = (str) => {
+  try { return decodeURIComponent(str) } catch (e) { return 'Error: URL no válida' }
+}

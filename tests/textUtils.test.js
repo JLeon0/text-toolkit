@@ -24,7 +24,13 @@ import {
   getWordCloud,
   formatJson,
   csvToTable,
-  markdownToHtml
+  markdownToHtml,
+  sortLinesAsc,
+  sortLinesDesc,
+  sortLinesRandom,
+  removeDuplicateLines,
+  urlEncode,
+  urlDecode
 } from '../src/lib/textUtils'
 
 describe('removeMultipleSpaces', () => {
@@ -175,6 +181,43 @@ describe('getWordCloud', () => {
   it('returns top words', () => {
     const r = getWordCloud('hola hola hola mundo')
     expect(r[0]).toEqual(['hola', 3])
+  })
+})
+
+describe('sortLinesAsc', () => {
+  it('sorts lines A-Z', () => {
+    expect(sortLinesAsc('c\na\nb')).toBe('a\nb\nc')
+  })
+})
+
+describe('sortLinesDesc', () => {
+  it('sorts lines Z-A', () => {
+    expect(sortLinesDesc('a\nb\nc')).toBe('c\nb\na')
+  })
+})
+
+describe('sortLinesRandom', () => {
+  it('returns same number of lines', () => {
+    const r = sortLinesRandom('a\nb\nc\nd\ne')
+    expect(r.split('\n').length).toBe(5)
+  })
+})
+
+describe('removeDuplicateLines', () => {
+  it('removes duplicate lines', () => {
+    expect(removeDuplicateLines('a\nb\na\nc')).toBe('a\nb\nc')
+  })
+})
+
+describe('urlEncode', () => {
+  it('encodes URL', () => {
+    expect(urlEncode('hola mundo')).toBe('hola%20mundo')
+  })
+})
+
+describe('urlDecode', () => {
+  it('decodes URL', () => {
+    expect(urlDecode('hola%20mundo')).toBe('hola mundo')
   })
 })
 
