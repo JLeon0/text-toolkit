@@ -10,7 +10,6 @@ const { t, toolLabel } = useI18n()
 
 const isCleanerExpanded = ref(true)
 const isConverterExpanded = ref(true)
-
 const selectedCleaner = ref(null)
 
 const toggleCleaner = (tool) => {
@@ -34,9 +33,7 @@ const handleCleanerCopy = async () => {
   try {
     await navigator.clipboard.writeText(previewCleanerText.value)
     emit('notify', toolLabel(selectedCleaner.value.id) + t('toastCopied'), 'success')
-  } catch (err) {
-    emit('notify', t('toastErrorCopy'), 'error')
-  }
+  } catch (err) { emit('notify', t('toastErrorCopy'), 'error') }
 }
 
 const selectedConverter = ref(null)
@@ -55,9 +52,7 @@ const isHtmlPreview = computed(() => selectedConverter.value?.isHtml === true)
 
 const groupedConverters = computed(() => {
   const map = {}
-  for (const g of converterGroups) {
-    map[g] = converters.filter(c => c.group === g)
-  }
+  for (const g of converterGroups) map[g] = converters.filter(c => c.group === g)
   return map
 })
 
@@ -72,78 +67,68 @@ const handleConverterCopy = async () => {
   try {
     await navigator.clipboard.writeText(previewConverterText.value)
     emit('notify', toolLabel(selectedConverter.value.id) + t('toastCopied'), 'success')
-  } catch (err) {
-    emit('notify', t('toastErrorCopy'), 'error')
-  }
+  } catch (err) { emit('notify', t('toastErrorCopy'), 'error') }
 }
 </script>
 
 <template>
-  <div class="flex flex-col gap-5 h-full">
+  <div class="flex flex-col gap-6">
     <!-- Cleaner -->
-    <div>
-      <button @click="isCleanerExpanded = !isCleanerExpanded" class="flex items-center justify-between w-full text-left group">
-        <h2 class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-400 transition-colors">{{ t('cleanerTitle') }}</h2>
-        <span class="text-gray-500 group-hover:text-indigo-400 transition-transform duration-200 text-xs" :class="{'rotate-180': isCleanerExpanded}">▼</span>
+    <section>
+      <button @click="isCleanerExpanded = !isCleanerExpanded" class="flex items-center gap-2 w-full text-left group mb-3">
+        <h2 class="text-xs font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">{{ t('cleanerTitle') }}</h2>
+        <span class="text-neutral-300 dark:text-neutral-700 text-[10px] transition-transform duration-200" :class="{'rotate-180': isCleanerExpanded}">▼</span>
       </button>
-      <div v-show="isCleanerExpanded" class="mt-3 flex flex-col gap-2">
-        <div class="flex flex-wrap gap-1.5">
+      <div v-show="isCleanerExpanded">
+        <div class="flex flex-wrap gap-1.5 mb-2">
           <button
-            v-for="tool in cleaners"
-            :key="tool.id"
-            @click="toggleCleaner(tool)"
-            :title="toolLabel(tool.id)"
+            v-for="tool in cleaners" :key="tool.id"
+            @click="toggleCleaner(tool)" :title="toolLabel(tool.id)"
             :class="[
-              'flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border transition-all text-xs',
+              'flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs transition-all',
               selectedCleaner?.id === tool.id
-                ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-500/20'
-                : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600'
+                ? 'bg-indigo-50 dark:bg-indigo-950 border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300'
+                : 'bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:border-neutral-300 dark:hover:border-neutral-700 hover:text-neutral-800 dark:hover:text-neutral-200'
             ]"
           >
-            <span class="text-sm">{{ tool.icon }}</span>
-            <span>{{ toolLabel(tool.id) }}</span>
+            <span class="text-neutral-400 dark:text-neutral-500 text-sm">{{ tool.icon }}</span>
+            {{ toolLabel(tool.id) }}
           </button>
         </div>
 
-        <div v-if="selectedCleaner" class="flex flex-col gap-2 bg-gray-50 dark:bg-gray-900/50 rounded-xl p-3 border border-gray-200 dark:border-gray-800 mt-1">
-          <div class="flex justify-between items-center">
-            <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-wider">{{ t('preview') }} — {{ toolLabel(selectedCleaner.id) }}</span>
+        <div v-if="selectedCleaner" class="mt-2 p-3 bg-neutral-50 dark:bg-neutral-900/50 rounded-lg border border-neutral-200 dark:border-neutral-800">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-neutral-400">{{ t('preview') }}</span>
             <div class="flex gap-1.5">
-              <button @click="handleCleanerCopy" class="px-2.5 py-1 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-md text-[11px] text-gray-600 dark:text-gray-300 transition-colors">{{ t('copy') }}</button>
-              <button @click="handleCleanerApply" class="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 rounded-md text-[11px] text-white transition-colors">{{ t('apply') }}</button>
+              <button @click="handleCleanerCopy" class="px-2.5 py-1 text-[11px] rounded-md border border-neutral-200 dark:border-neutral-800 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">{{ t('copy') }}</button>
+              <button @click="handleCleanerApply" class="px-2.5 py-1 text-[11px] rounded-md bg-indigo-600 hover:bg-indigo-700 text-white transition-colors">{{ t('apply') }}</button>
             </div>
           </div>
-          <textarea
-            :value="previewCleanerText"
-            readonly
-            class="w-full p-3 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 text-sm font-mono rounded-lg outline-none border border-gray-200 dark:border-gray-700 resize-none h-24"
+          <textarea :value="previewCleanerText" readonly
+            class="w-full p-3 bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 text-sm font-mono rounded-md outline-none border border-neutral-200 dark:border-neutral-800 resize-none h-24"
           ></textarea>
         </div>
       </div>
-    </div>
-
-    <hr class="border-gray-200 dark:border-gray-800" />
+    </section>
 
     <!-- Converter -->
-    <div class="flex flex-col flex-1 min-h-0">
-      <button @click="isConverterExpanded = !isConverterExpanded" class="flex items-center justify-between w-full text-left group shrink-0">
-        <h2 class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-400 transition-colors">{{ t('converterTitle') }}</h2>
-        <span class="text-gray-500 group-hover:text-indigo-400 transition-transform duration-200 text-xs" :class="{'rotate-180': isConverterExpanded}">▼</span>
+    <section class="flex flex-col flex-1 min-h-0">
+      <button @click="isConverterExpanded = !isConverterExpanded" class="flex items-center gap-2 w-full text-left group mb-3 shrink-0">
+        <h2 class="text-xs font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">{{ t('converterTitle') }}</h2>
+        <span class="text-neutral-300 dark:text-neutral-700 text-[10px] transition-transform duration-200" :class="{'rotate-180': isConverterExpanded}">▼</span>
       </button>
-      <div v-show="isConverterExpanded" class="mt-3 flex flex-col min-h-0 flex-1">
-        <div v-for="group in converterGroups" :key="group" class="mb-2">
-          <span class="text-[9px] uppercase font-bold text-gray-400 dark:text-gray-500 tracking-widest mb-1 block">{{ t('toolGroups')[group] }}</span>
+      <div v-show="isConverterExpanded" class="flex flex-col min-h-0 flex-1">
+        <div v-for="group in converterGroups" :key="group" class="mb-3">
+          <span class="text-[9px] font-semibold uppercase tracking-widest text-neutral-300 dark:text-neutral-700 mb-1.5 block">{{ t('toolGroups')[group] }}</span>
           <div class="flex flex-wrap gap-1">
             <button
-              v-for="conv in groupedConverters[group]"
-              :key="conv.id"
-              @click="toggleConverter(conv)"
-              :title="toolLabel(conv.id)"
+              v-for="conv in groupedConverters[group]" :key="conv.id"
+              @click="toggleConverter(conv)" :title="toolLabel(conv.id)"
               :class="[
-                'px-2 py-1 rounded-md text-[10px] transition-all border',
+                'px-2 py-1 rounded-md text-[10px] font-medium border transition-all',
                 selectedConverter?.id === conv.id
-                  ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-500/20'
-                  : 'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-600'
+                  ? 'bg-indigo-50 dark:bg-indigo-950 border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300'
+                  : 'bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-500 dark:text-neutral-400 hover:border-neutral-300 dark:hover:border-neutral-700 hover:text-neutral-700 dark:hover:text-neutral-200'
               ]"
             >
               {{ toolLabel(conv.id) }}
@@ -151,28 +136,24 @@ const handleConverterCopy = async () => {
           </div>
         </div>
 
-        <div v-if="selectedConverter" class="flex-1 flex flex-col gap-2 mt-3 min-h-[120px]">
+        <div v-if="selectedConverter" class="flex-1 flex flex-col gap-2 mt-1 min-h-[120px]">
           <div class="flex justify-between items-center shrink-0">
-            <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-wider">{{ t('preview') }} — {{ toolLabel(selectedConverter.id) }}</span>
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-neutral-400">{{ t('preview') }}</span>
             <div class="flex gap-1.5">
-              <button @click="emit('share')" class="px-2.5 py-1 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-md text-[11px] text-gray-600 dark:text-gray-300 transition-colors" :title="t('shareTitle')">🔗</button>
-              <button @click="handleConverterCopy" class="px-2.5 py-1 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-md text-[11px] text-gray-600 dark:text-gray-300 transition-colors">{{ t('copy') }}</button>
-              <button @click="handleConverterApply" class="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 rounded-md text-[11px] text-white transition-colors">{{ t('apply') }}</button>
+              <button @click="emit('share')" class="px-2.5 py-1 text-[11px] rounded-md border border-neutral-200 dark:border-neutral-800 text-neutral-400 dark:text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" :title="t('shareTitle')">🔗</button>
+              <button @click="handleConverterCopy" class="px-2.5 py-1 text-[11px] rounded-md border border-neutral-200 dark:border-neutral-800 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">{{ t('copy') }}</button>
+              <button @click="handleConverterApply" class="px-2.5 py-1 text-[11px] rounded-md bg-indigo-600 hover:bg-indigo-700 text-white transition-colors">{{ t('apply') }}</button>
             </div>
           </div>
-          <textarea
-            v-if="!isHtmlPreview"
-            :value="previewConverterText"
-            readonly
-            class="flex-1 w-full p-3 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 text-sm font-mono rounded-lg outline-none border border-gray-200 dark:border-gray-700 resize-none"
+          <textarea v-if="!isHtmlPreview" :value="previewConverterText" readonly
+            class="flex-1 w-full p-3 bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 text-sm font-mono rounded-md outline-none border border-neutral-200 dark:border-neutral-800 resize-none"
           ></textarea>
-          <div
-            v-else
-            class="flex-1 w-full p-3 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 rounded-lg border border-gray-200 dark:border-gray-700 overflow-auto markdown-body"
+          <div v-else
+            class="flex-1 w-full p-3 bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 rounded-md border border-neutral-200 dark:border-neutral-800 overflow-auto markdown-body"
             v-html="previewConverterText"
           ></div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
