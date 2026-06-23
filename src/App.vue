@@ -2,7 +2,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import TextInput from './components/TextInput.vue'
 import FormatTool from './components/FormatTool.vue'
-import StatsTool from './components/StatsTool.vue'
 import Toast from './components/Toast.vue'
 import { useTextTools } from './composables/useTextTools'
 import { useTheme } from './composables/useTheme'
@@ -14,7 +13,6 @@ const { isDark, toggle: toggleTheme } = useTheme()
 const { loadFromUrl, copyShareUrl } = useShareLink()
 const { t, locale, setLocale } = useI18n()
 
-const activeTab = ref('format')
 const toast = ref({ show: false, message: '', type: 'success' })
 
 const inputHeight = ref(50)
@@ -51,7 +49,7 @@ const checkMobile = () => { isMobile.value = window.innerWidth < 768 }
 
 onMounted(() => {
   checkMobile()
-  activeTab.value = loadFromUrl()
+  loadFromUrl()
   document.title = t('siteTitle')
   window.addEventListener('resize', checkMobile)
   window.addEventListener('mousemove', onDrag)
@@ -101,39 +99,10 @@ onUnmounted(() => {
 
       <div class="w-full md:w-1/2 overflow-y-auto flex-1">
         <div class="p-4 md:p-8 max-w-3xl mx-auto min-h-full">
-          
-          <div class="md:hidden">
-            <Transition name="fade" mode="out-in">
-              <div :key="activeTab">
-                <FormatTool v-if="activeTab === 'format'" @notify="showToast" @share="handleShare" />
-                <StatsTool v-else-if="activeTab === 'stats'" />
-              </div>
-            </Transition>
-          </div>
-
-          <div class="hidden md:flex flex-col gap-8 pb-10">
-            <FormatTool @notify="showToast" @share="handleShare" />
-            <div class="border-t border-neutral-200 dark:border-neutral-800 pt-8">
-              <StatsTool />
-            </div>
-          </div>
+          <FormatTool @notify="showToast" @share="handleShare" />
         </div>
       </div>
     </main>
-
-    <nav class="md:hidden w-full h-14 border-t border-neutral-200 dark:border-neutral-800 flex flex-row fixed bottom-0 left-0 z-30 bg-[#fafafa] dark:bg-[#0a0a0a]">
-      <button
-        v-for="tab in [{id: 'format', labelKey: 'toolsTab'}, {id: 'stats', labelKey: 'statsTab'}]"
-        :key="tab.id"
-        @click="activeTab = tab.id"
-        :class="[
-          'flex-1 flex items-center justify-center text-xs font-medium transition-colors',
-          activeTab === tab.id ? 'text-indigo-600 dark:text-indigo-400' : 'text-neutral-400 dark:text-neutral-600'
-        ]"
-      >
-        {{ t(tab.labelKey) }}
-      </button>
-    </nav>
 
     <Toast :show="toast.show" :message="toast.message" :type="toast.type" />
   </div>
