@@ -127,7 +127,7 @@ const handleConverterCopy = async () => {
               'px-2.5 py-1.5 rounded-md text-[11px] transition-all border',
               selectedConverter?.id === conv.id
                 ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-900/20'
-                : 'bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700'
+                : 'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
             ]"
           >
             {{ toolLabel(conv.id) }}
