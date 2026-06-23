@@ -49,6 +49,12 @@ export const locales = {
     toastErrorCopy: 'Error al copiar',
     toastErrorLink: 'Error al copiar enlace',
     toastEmptyText: 'Escribe o pega texto primero',
+    toolGroups: {
+      case: 'Mayúsculas / Minúsculas',
+      code: 'Código / Variables',
+      text: 'Invertir Texto',
+      data: 'Datos / Formato',
+    },
     brand: 'TEXT TOOLKIT',
     siteTitle: 'Text Toolkit - Herramientas de Texto',
   },
@@ -102,6 +108,12 @@ export const locales = {
     toastErrorCopy: 'Error copying',
     toastErrorLink: 'Error copying link',
     toastEmptyText: 'Type or paste text first',
+    toolGroups: {
+      case: 'Uppercase / Lowercase',
+      code: 'Code / Variables',
+      text: 'Reverse Text',
+      data: 'Data / Format',
+    },
     brand: 'TEXT TOOLKIT',
     siteTitle: 'Text Toolkit - Text Tools',
   }

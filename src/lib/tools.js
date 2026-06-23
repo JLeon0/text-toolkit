@@ -35,20 +35,22 @@ export const cleaners = [
 ]
 
 export const converters = [
-  { id: 'to-upper', label: 'MAYÚSCULAS', fn: toUpperCase },
-  { id: 'to-lower', label: 'minúsculas', fn: toLowerCase },
-  { id: 'title-case', label: 'Tipo Título', fn: toTitleCase },
-  { id: 'capitalize', label: 'Capitalizar', fn: capitalizeSentences },
-  { id: 'to-slug', label: 'slug-case', fn: toSlug },
-  { id: 'to-snake', label: 'snake_case', fn: toSnakeCase },
-  { id: 'to-camel', label: 'camelCase', fn: toCamelCase },
-  { id: 'to-pascal', label: 'PascalCase', fn: toPascalCase },
-  { id: 'reverse-text', label: 'Invertir Texto', fn: reverseText },
-  { id: 'reverse-words', label: 'Invertir Palabras', fn: reverseWords },
-  { id: 'to-base64', label: 'A Base64', fn: toBase64 },
-  { id: 'from-base64', label: 'De Base64', fn: fromBase64 },
-  { id: 'mocking-case', label: 'Mocking Case', fn: toMockingCase },
-  { id: 'format-json', label: 'JSON Formato', fn: formatJson },
-  { id: 'csv-table', label: 'CSV a Tabla', fn: csvToTable, isHtml: true },
-  { id: 'markdown', label: 'Markdown HTML', fn: markdownToHtml, isHtml: true },
+  { id: 'to-upper', label: 'MAYÚSCULAS', fn: toUpperCase, group: 'case' },
+  { id: 'to-lower', label: 'minúsculas', fn: toLowerCase, group: 'case' },
+  { id: 'title-case', label: 'Tipo Título', fn: toTitleCase, group: 'case' },
+  { id: 'capitalize', label: 'Capitalizar', fn: capitalizeSentences, group: 'case' },
+  { id: 'mocking-case', label: 'Mocking Case', fn: toMockingCase, group: 'case' },
+  { id: 'to-slug', label: 'slug-case', fn: toSlug, group: 'code' },
+  { id: 'to-snake', label: 'snake_case', fn: toSnakeCase, group: 'code' },
+  { id: 'to-camel', label: 'camelCase', fn: toCamelCase, group: 'code' },
+  { id: 'to-pascal', label: 'PascalCase', fn: toPascalCase, group: 'code' },
+  { id: 'reverse-text', label: 'Invertir Texto', fn: reverseText, group: 'text' },
+  { id: 'reverse-words', label: 'Invertir Palabras', fn: reverseWords, group: 'text' },
+  { id: 'to-base64', label: 'A Base64', fn: toBase64, group: 'data' },
+  { id: 'from-base64', label: 'De Base64', fn: fromBase64, group: 'data' },
+  { id: 'format-json', label: 'JSON Formato', fn: formatJson, group: 'data' },
+  { id: 'csv-table', label: 'CSV a Tabla', fn: csvToTable, group: 'data', isHtml: true },
+  { id: 'markdown', label: 'Markdown HTML', fn: markdownToHtml, group: 'data', isHtml: true },
 ]
+
+export const converterGroups = ['case', 'code', 'text', 'data']
