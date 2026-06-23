@@ -48,6 +48,7 @@ export const locales = {
     toastLinkCopied: 'Enlace copiado al portapapeles',
     toastErrorCopy: 'Error al copiar',
     toastErrorLink: 'Error al copiar enlace',
+    toastEmptyText: 'Escribe o pega texto primero',
     brand: 'TEXT TOOLKIT',
     siteTitle: 'Text Toolkit - Herramientas de Texto',
   },
@@ -100,6 +101,7 @@ export const locales = {
     toastLinkCopied: 'Link copied to clipboard',
     toastErrorCopy: 'Error copying',
     toastErrorLink: 'Error copying link',
+    toastEmptyText: 'Type or paste text first',
     brand: 'TEXT TOOLKIT',
     siteTitle: 'Text Toolkit - Text Tools',
   }

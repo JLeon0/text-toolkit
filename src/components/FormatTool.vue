@@ -14,6 +14,7 @@ const isConverterExpanded = ref(true)
 const selectedCleaner = ref(null)
 
 const toggleCleaner = (tool) => {
+  if (!text.value) { emit('notify', t('toastEmptyText'), 'error'); return }
   selectedCleaner.value = selectedCleaner.value?.id === tool.id ? null : tool
 }
 
@@ -41,6 +42,7 @@ const handleCleanerCopy = async () => {
 const selectedConverter = ref(null)
 
 const toggleConverter = (conv) => {
+  if (!text.value) { emit('notify', t('toastEmptyText'), 'error'); return }
   selectedConverter.value = selectedConverter.value?.id === conv.id ? null : conv
 }
 
@@ -81,6 +83,7 @@ const handleConverterCopy = async () => {
             v-for="tool in cleaners"
             :key="tool.id"
             @click="toggleCleaner(tool)"
+            :title="toolLabel(tool.id)"
             :class="[
               'flex items-center gap-1.5 px-3 py-1.5 rounded-md border transition-all text-xs',
               selectedCleaner?.id === tool.id
@@ -123,11 +126,12 @@ const handleConverterCopy = async () => {
             v-for="conv in converters"
             :key="conv.id"
             @click="toggleConverter(conv)"
+            :title="toolLabel(conv.id)"
             :class="[
               'px-2.5 py-1.5 rounded-md text-[11px] transition-all border',
               selectedConverter?.id === conv.id
                 ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-900/20'
-                : 'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                : 'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-600'
             ]"
           >
             {{ toolLabel(conv.id) }}

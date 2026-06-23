@@ -83,6 +83,17 @@ onUnmounted(() => {
 <template>
   <div class="flex flex-col h-screen w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans overflow-hidden relative">
     
+    <!-- Mobile Header -->
+    <header class="md:hidden h-12 items-center px-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shrink-0 z-20 flex">
+      <div class="w-6 h-6 bg-indigo-500 rounded flex items-center justify-center text-white font-bold text-sm">T</div>
+      <span class="ml-2 font-bold text-sm text-gray-900 dark:text-white">TextTool</span>
+      <div class="ml-auto flex items-center gap-2">
+        <button @click="setLocale(locale === 'es' ? 'en' : 'es')" class="text-[10px] px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-400 font-medium">{{ locale === 'es' ? 'EN' : 'ES' }}</button>
+        <button @click="handleShare" class="text-xs px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-400">🔗</button>
+        <button @click="toggleTheme" class="text-xs px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded border border-gray-300 dark:border-gray-700" :title="isDark ? 'Modo claro' : 'Modo oscuro'">{{ isDark ? '☀️' : '🌙' }}</button>
+      </div>
+    </header>
+
     <header class="hidden md:flex h-16 items-center px-6 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shrink-0 z-20">
       <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-500/20">T</div>
       <span class="ml-3 font-bold text-lg tracking-tight text-gray-900 dark:text-white">TextTool</span>
@@ -91,7 +102,7 @@ onUnmounted(() => {
           {{ locale === 'es' ? 'EN' : 'ES' }}
         </button>
         <button @click="handleShare" :title="t('shareTitle')" class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-md border border-gray-300 dark:border-gray-700 transition-colors">🔗 {{ t('share') }}</button>
-        <button @click="toggleTheme" class="text-sm px-2 py-1 bg-gray-800 hover:bg-gray-700 rounded-md border border-gray-700 transition-colors" :title="isDark ? 'Modo claro' : 'Modo oscuro'">
+        <button @click="toggleTheme" class="text-sm px-2 py-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md border border-gray-300 dark:border-gray-700 transition-colors" :title="isDark ? 'Modo claro' : 'Modo oscuro'">
           {{ isDark ? '☀️' : '🌙' }}
         </button>
         <div class="text-xs text-gray-500">v1.0.0</div>
@@ -165,5 +176,6 @@ onUnmounted(() => {
 <style>
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #374151; border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 2px; }
+.dark ::-webkit-scrollbar-thumb { background: #374151; }
 </style>

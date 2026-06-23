@@ -12,6 +12,10 @@ const emit = defineEmits(['update:modelValue'])
 const { text, stats, canUndo, canRedo, undo, redo } = useTextTools()
 const { t } = useI18n()
 
+const clear = () => {
+  text.value = ''
+}
+
 const handleInput = (e) => {
   emit('update:modelValue', e.target.value)
 }
@@ -43,6 +47,7 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
       <div class="flex gap-2 items-center">
         <button @click="undo" :disabled="!canUndo" :class="canUndo ? 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white' : 'text-gray-400 dark:text-gray-700'" class="text-xs px-1.5 py-0.5 rounded transition-colors" title="Ctrl+Z">↩</button>
         <button @click="redo" :disabled="!canRedo" :class="canRedo ? 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white' : 'text-gray-400 dark:text-gray-700'" class="text-xs px-1.5 py-0.5 rounded transition-colors" title="Ctrl+Shift+Z">↪</button>
+        <button @click="clear" class="text-xs px-1.5 py-0.5 text-gray-600 dark:text-gray-400 hover:text-red-500 rounded transition-colors" title="Limpiar">✕</button>
       </div>
       <div class="flex gap-4 text-xs text-gray-500 font-medium">
         <span>{{ t('chars') }}: <span class="text-gray-700 dark:text-gray-300">{{ stats.chars }}</span></span>
