@@ -4,19 +4,60 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f8fafc 100%);
+}
+.dark body {
+  background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%);
 }
 
 *:focus-visible {
-  outline: 2px solid #6366f1;
+  outline: 2px solid #818cf8;
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass {
+  background: rgba(17, 24, 39, 0.7);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.dark .glass-card {
+  background: rgba(17, 24, 39, 0.5);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.dark .glass-input {
+  background: rgba(17, 24, 39, 0.4);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+.gradient-accent-hover:hover {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
 }
 
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
 }
-
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
@@ -33,7 +74,7 @@ body {
 .markdown-body pre { padding: 1rem; border-radius: 0.5rem; overflow-x: auto; margin: 0.5rem 0; background: #e5e7eb; }
 .dark .markdown-body pre { background: #1f2937; }
 .markdown-body pre code { background: none; padding: 0; }
-.markdown-body blockquote { border-left: 3px solid #6366f1; padding-left: 1rem; margin: 0.5rem 0; color: #6b7280; }
+.markdown-body blockquote { border-left: 3px solid #818cf8; padding-left: 1rem; margin: 0.5rem 0; color: #6b7280; }
 .markdown-body a { color: #6366f1; text-decoration: underline; }
 .markdown-body table { width: 100%; border-collapse: collapse; margin: 0.5rem 0; }
 .markdown-body th, .markdown-body td { border: 1px solid #d1d5db; padding: 0.5rem; text-align: left; }

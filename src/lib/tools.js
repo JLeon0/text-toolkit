@@ -25,13 +25,13 @@ import {
 } from '../lib/textUtils'
 
 export const cleaners = [
-  { id: 'remove-multi-spaces', label: 'Quitar espacios múltiples', fn: removeMultipleSpaces, icon: '↔️' },
-  { id: 'remove-empty-lines', label: 'Quitar líneas vacías', fn: removeEmptyLines, icon: '🗑️' },
-  { id: 'trim-lines', label: 'Recortar espacios', fn: trimLines, icon: '✂️' },
+  { id: 'remove-multi-spaces', label: 'Quitar espacios múltiples', fn: removeMultipleSpaces, icon: '␣␣→␣' },
+  { id: 'remove-empty-lines', label: 'Quitar líneas vacías', fn: removeEmptyLines, icon: '¶×' },
+  { id: 'trim-lines', label: 'Recortar espacios', fn: trimLines, icon: '≫·≪' },
   { id: 'remove-accents', label: 'Quitar tildes', fn: removeAccents, icon: 'á→a' },
-  { id: 'remove-numbers', label: 'Quitar números', fn: removeNumbers, icon: '🔢' },
-  { id: 'remove-symbols', label: 'Quitar símbolos', fn: removeSpecialChars, icon: '❇' },
-  { id: 'remove-emojis', label: 'Quitar emojis', fn: removeEmojis, icon: '😀' },
+  { id: 'remove-numbers', label: 'Quitar números', fn: removeNumbers, icon: '123×' },
+  { id: 'remove-symbols', label: 'Quitar símbolos', fn: removeSpecialChars, icon: '@#×' },
+  { id: 'remove-emojis', label: 'Quitar emojis', fn: removeEmojis, icon: '☺×' },
 ]
 
 export const converters = [

@@ -9,7 +9,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
-const { text, stats, canUndo, canRedo, undo, redo, getStats } = useTextTools()
+const { text, stats, canUndo, canRedo, undo, redo } = useTextTools()
 const { t } = useI18n()
 
 const handleInput = (e) => {
@@ -36,14 +36,14 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
 </script>
 
 <template>
-  <div class="relative flex flex-col h-full w-full bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden border border-gray-300 dark:border-gray-700 shadow-2xl">
+  <div class="relative flex flex-col h-full w-full glass-input rounded-2xl overflow-hidden shadow-xl shadow-black/5 dark:shadow-black/20">
     <textarea
       :value="modelValue"
       @input="handleInput"
       :placeholder="t('placeholder')"
-      class="flex-1 w-full p-5 bg-transparent text-gray-900 dark:text-gray-100 outline-none resize-none font-mono text-sm leading-relaxed placeholder-gray-400 dark:placeholder-gray-600"
+      class="flex-1 w-full p-5 bg-transparent text-gray-800 dark:text-gray-100 outline-none resize-none font-mono text-sm leading-relaxed placeholder-gray-400/60 dark:placeholder-gray-500/60"
     ></textarea>
-    <div class="flex items-center justify-between px-3 py-1.5 bg-gray-200/50 dark:bg-gray-900/50 border-t border-gray-300/50 dark:border-gray-700/50">
+    <div class="flex items-center justify-between px-3 py-1.5 border-t border-black/5 dark:border-white/5">
       <div class="flex items-center gap-1">
         <button @click="undo" :disabled="!canUndo" :class="canUndo ? 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white' : 'text-gray-300 dark:text-gray-700'" class="text-xs px-1.5 py-0.5 rounded transition-colors" title="Ctrl+Z">↩</button>
         <button @click="redo" :disabled="!canRedo" :class="canRedo ? 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white' : 'text-gray-300 dark:text-gray-700'" class="text-xs px-1.5 py-0.5 rounded transition-colors" title="Ctrl+Shift+Z">↪</button>
